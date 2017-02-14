@@ -1,0 +1,31 @@
+.gallery {
+    margin: 150px auto;
+    max-width: 500px;
+    padding: 20px;
+    -webkit-display: -webkit-box;
+    -webkit-display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #594255;
+}
+
+.item {
+    background-color: #fff;
+    width: 200px;
+    height: 100px;
+    margin: 1%;
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 5em;
+    color: #594255;
+    -webkit-flex-basis: 200px;
+    -ms-flex-preferred-size: 200px;
+    flex-basis: 200px;
+    -webkit-flex-grow: 0;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+}

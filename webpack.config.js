@@ -10,22 +10,11 @@ const config = {
         filename: 'bundle.js'
     },
     module: {
-        rules: [{
-            test: /\.js$/,
-            include: path.resolve(__dirname, 'src'),
-            use: [{
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        ['es2015', {modules: false}]
-                    ]
-                }
-            }]
-        },
+        rules: [
             {
-                test: /\.jsx?$/,
-                loaders: ['babel-loader?presets[]=es2015,presets[]=react'],
-                exclude: /node_modules/
+                test: /\.js|.jsx?$/,
+                exclude: /(node_modules)/,
+                loaders: ["babel-loader"]
             },
             {
                 test: /\.css$/,

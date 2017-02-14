@@ -3,6 +3,7 @@ import App from '../components/App';
 import style from '../components/Layout.css';
 import {Flex, Box} from 'reflexbox';
 import {Avatar} from 'rebass';
+import {CardImage} from 'rebass';
 
 export default () => {
     return (
@@ -26,6 +27,67 @@ export default () => {
                 <Box className={style.Box} p={3}>
                     Box
                 </Box>
+            </Flex>
+
+            <Flex wrap>
+                <Box
+                    col={12}
+                    lg={3}
+                    sm={6}
+                >
+                    <div
+                        style={{maxWidth: 192}}>
+                        <CardImage src="http://placehold.it/320/08e/fff"/>
+                    </div>
+                </Box>
+                <Box
+                    col={12}
+                    lg={3}
+                    sm={6}
+                >
+                    <div
+                        style={{maxWidth: 192}}>
+                        <CardImage src="http://placehold.it/320/08e/fff"/>
+                    </div>
+                </Box>
+                <Box
+                    col={12}
+                    lg={3}
+                    sm={6}
+                >
+                    <div
+                        style={{maxWidth: 192}}>
+                        <CardImage src="http://placehold.it/320/08e/fff"/>
+                    </div>
+                </Box>
+                <Box
+                    col={12}
+                    lg={3}
+                    sm={6}
+                >
+                    <div
+                        style={{maxWidth: 192}}>
+                        <CardImage src="http://placehold.it/320/08e/fff"/>
+                    </div>
+                </Box>
+            </Flex>
+            <Flex>
+                <div
+                    style={{maxWidth: 192}}>
+                    <CardImage src="http://placehold.it/320/08e/fff"/>
+                </div>
+                <div
+                    style={{maxWidth: 192}}>
+                    <CardImage src="http://placehold.it/320/08e/fff"/>
+                </div>
+                <div
+                    style={{maxWidth: 192}}>
+                    <CardImage src="http://placehold.it/320/08e/fff"/>
+                </div>
+                <div
+                    style={{maxWidth: 192}}>
+                    <CardImage src="http://placehold.it/320/08e/fff"/>
+                </div>
             </Flex>
         </div>
     );

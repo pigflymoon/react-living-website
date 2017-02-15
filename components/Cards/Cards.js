@@ -8,32 +8,34 @@ import {
     Space,
     Rating
 } from 'rebass';
+import './Cards.scss';
 
-const Cards = ({ colors }) => {
+const Cards = () => {
+    const primary = '#666';
     const card = {
-        image: `http://placehold.it/256x192/`,
+        image: `http://placehold.it/256x192/${primary}/fff`,
         heading: 'Card',
         text: 'An index card consists of card stock cut to a standard size, used for recording and storing small amounts of discrete data. It was invented by Carl Linnaeus, around 1760.'
     }
 
-    const cards = Array.from({ length: 3 }, (c) => card)
+    const cards = Array.from({length: 3}, (c) => card)
 
     return (
         <Flex wrap gutter={2}>
-            {cards.map(({ image, heading, text }, i) => (
+            {cards.map(({image, heading, text}, i) => (
                 <Box
                     key={i}
                     col={12}
                     sm={4}
                     p={2}>
                     <Card>
-                        <CardImage src={image} />
+                        <CardImage src={image}/>
                         <Flex align='center'>
-                            <Heading children={heading} />
-                            <Space auto />
-                            <Rating ml={1} value={4} />
+                            <Heading children={heading}/>
+                            <Space auto/>
+                            <Rating ml={1} value={4}/>
                         </Flex>
-                        <Text small children={text} />
+                        <Text small children={text}/>
                     </Card>
                 </Box>
             ))}

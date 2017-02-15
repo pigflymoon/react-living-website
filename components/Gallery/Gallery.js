@@ -1,7 +1,7 @@
 import React from 'react';
 import 'normalize.css/normalize.css';
 import './Gallery.scss';
-// let  imageDatas from '../../data/imageDatas.json';
+
 
 //获取图片相关信息
 // var imageDatas = require('../data/imageDatas.json');

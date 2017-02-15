@@ -1,0 +1,44 @@
+import React from 'react';
+import {Flex, Box} from 'reflexbox';
+import {
+    Card,
+    CardImage,
+    Heading,
+    Text,
+    Space,
+    Rating
+} from 'rebass';
+
+const Cards = ({ colors }) => {
+    const card = {
+        image: `http://placehold.it/256x192/`,
+        heading: 'Card',
+        text: 'An index card consists of card stock cut to a standard size, used for recording and storing small amounts of discrete data. It was invented by Carl Linnaeus, around 1760.'
+    }
+
+    const cards = Array.from({ length: 3 }, (c) => card)
+
+    return (
+        <Flex wrap gutter={2}>
+            {cards.map(({ image, heading, text }, i) => (
+                <Box
+                    key={i}
+                    col={12}
+                    sm={4}
+                    p={2}>
+                    <Card>
+                        <CardImage src={image} />
+                        <Flex align='center'>
+                            <Heading children={heading} />
+                            <Space auto />
+                            <Rating ml={1} value={4} />
+                        </Flex>
+                        <Text small children={text} />
+                    </Card>
+                </Box>
+            ))}
+        </Flex>
+    )
+}
+
+export default Cards

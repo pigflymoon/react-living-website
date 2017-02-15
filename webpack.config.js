@@ -17,9 +17,16 @@ const config = {
                 loaders: ["babel-loader"]
             },
             {
-                test: /\.css$/,
-                loader: "style-loader!css-loader?modules"
-            },]
+                test: /\.scss$/,
+                use:[{
+                    loader:"style-loader"
+                },{
+                    loader:"css-loader"
+                },{
+                    loader:"sass-loader"
+                }]
+                
+            }]
     }
 }
 

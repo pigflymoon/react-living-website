@@ -8,10 +8,10 @@ export default () => {
         <div>
             <Nav />
             <div className="container">
-                <section className="main">
+               
                     <Gallery />
-                </section>
-                <aside className="sidebar"></aside>
+
+
             </div>
             <footer></footer>
         </div>

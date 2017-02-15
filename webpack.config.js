@@ -17,15 +17,31 @@ const config = {
                 loaders: ["babel-loader"]
             },
             {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
+            },
+            {
                 test: /\.scss$/,
-                use:[{
-                    loader:"style-loader"
-                },{
-                    loader:"css-loader"
-                },{
-                    loader:"sass-loader"
+                use: [{
+                    loader: "style-loader"
+                }, {
+                    loader: "css-loader"
+                }, {
+                    loader: "sass-loader"
                 }]
-                
+
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
+            },
+            {
+                test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=8192'
+            },
+            {
+                test: /\.(mp4|ogg|svg)$/,
+                loader: 'file-loader'
             }]
     }
 }

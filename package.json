@@ -45,8 +45,11 @@
     "babel-core": "^6.22.1",
     "concurrently": "^3.3.0",
     "css-loader": "^0.26.1",
+    "file-loader": "^0.10.0",
+    "json-loader": "^0.5.4",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.0",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7"
   }
 }

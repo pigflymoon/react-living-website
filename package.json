@@ -45,6 +45,7 @@
     "babel-core": "^6.22.1",
     "concurrently": "^3.3.0",
     "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.0",

@@ -11,9 +11,11 @@ import {
 import './Category.scss';
 
 
-const primary = '#ec96a4'
-// const primary = '#ec96a4'
-// const primary = '#ec96a4'
+const cream = '#eae2d6'
+const darkCream = '#d5c3aa'
+const brown = '#867666'
+const yellow = '#e1b80d'
+
 const Category = ({toggle}) => (
 
     <Section>
@@ -23,7 +25,7 @@ const Category = ({toggle}) => (
             gutter={2}>
             <Box px={2} sm={6}>
                 <Panel m={0}>
-                    <PanelHeader  style={{backgroundColor:"#eae2d6"}}>
+                    <PanelHeader style={{backgroundColor:cream}}>
                         Property
                     </PanelHeader>
                     <Text>
@@ -34,8 +36,8 @@ const Category = ({toggle}) => (
                 </Panel>
             </Box>
             <Box px={2} sm={6}>
-                <Panel m={0} >
-                    <PanelHeader  style={{backgroundColor:"#d5c3aa"}}>
+                <Panel m={0}>
+                    <PanelHeader style={{backgroundColor: darkCream}}>
                         Motors
                     </PanelHeader>
                     <Text>
@@ -46,8 +48,8 @@ const Category = ({toggle}) => (
                 </Panel>
             </Box>
             <Box px={2} sm={6}>
-                <Panel m={0} >
-                    <PanelHeader  style={{backgroundColor:"#867666"}}>
+                <Panel m={0}>
+                    <PanelHeader style={{backgroundColor:brown}}>
                         Health and Beauty
                     </PanelHeader>
                     <Text>
@@ -58,8 +60,8 @@ const Category = ({toggle}) => (
                 </Panel>
             </Box>
             <Box px={2} sm={6}>
-                <Panel m={0} >
-                    <PanelHeader  style={{backgroundColor:"#e1b80d"}}>
+                <Panel m={0}>
+                    <PanelHeader style={{backgroundColor:yellow}}>
                         Food and Drink
                     </PanelHeader>
                     <Text>

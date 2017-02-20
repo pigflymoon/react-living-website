@@ -3,8 +3,7 @@ const webpack = require('webpack')
 const path = require('path')
 
 const config = {
-    context: path.resolve(__dirname, 'src'),
-    entry: './App.js',
+    entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js'

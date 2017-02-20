@@ -8,7 +8,7 @@ import './Home.scss';
 export default class Home extends React.Component {
     render() {
         return (
-            <div>
+            <div>                
                 <div className="container">
                     <div className="section-margin">
                         <Gallery />

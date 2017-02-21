@@ -10,22 +10,13 @@ export default class Home extends React.Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className="section-margin">
-                        <Gallery />
-                    </div>
-                    <section className="news-list">
-                        <NewsList />
-                    </section>
-                    <div>
-                        <Category />
-                    </div>
-
-                    <section className="cards">
-                        <Cards />
-                    </section>
-
+                <div className="section-margin">
+                    <Gallery />
                 </div>
+
+                <NewsList />
+                <Category />
+                <Cards />
             </div>
         );
 

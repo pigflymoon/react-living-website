@@ -21,7 +21,7 @@ const Cards = () => {
     const cards = Array.from({length: 3}, (c) => card)
 
     return (
-        <Flex wrap gutter={2}>
+        <Flex align='center' wrap>
             {cards.map(({image, heading, text}, i) => (
                 <Box
                     key={i}

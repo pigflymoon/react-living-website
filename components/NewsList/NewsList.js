@@ -7,7 +7,7 @@ const NewsList = ({toggle}) => (
     <Flex
         align='center'
         wrap
-        gutter={2}>
+    >
         <Box sm={6} p={2}>
             <Panel theme='success'>
                 <PanelHeader>

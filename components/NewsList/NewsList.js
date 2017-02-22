@@ -18,24 +18,7 @@ const NewsList = ({ }) => (
                     <Text small children='PanelFooter is a good place for feet'/>
                 </PanelFooter>
             </Panel>
-            <Panel theme='success'>
-                <PanelHeader>
-                    01 September
-                </PanelHeader>
-                <Text children='This is the Panel body'/>
-                <PanelFooter>
-                    <Text small children='PanelFooter is a good place for feet'/>
-                </PanelFooter>
-            </Panel>
-            <Panel theme='success'>
-                <PanelHeader>
-                    01 September
-                </PanelHeader>
-                <Text children='This is the Panel body'/>
-                <PanelFooter>
-                    <Text small children='PanelFooter is a good place for feet'/>
-                </PanelFooter>
-            </Panel>
+            
         </Box>
     </Flex>
 

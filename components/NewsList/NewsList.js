@@ -2,16 +2,34 @@ import React from 'react'
 import {Flex, Box} from 'reflexbox'
 import {Heading, LinkBlock, Panel, PanelHeader, Text, PanelFooter} from 'rebass';
 
-const NewsList = ({toggle}) => (
+const NewsList = ({ }) => (
 
     <Flex
         align='center'
         wrap
     >
-        <Box sm={6} p={2}>
+        <Box sm={3} p={2}>
             <Panel theme='success'>
                 <PanelHeader>
-                    PanelHeader
+                    01 September
+                </PanelHeader>
+                <Text children='This is the Panel body'/>
+                <PanelFooter>
+                    <Text small children='PanelFooter is a good place for feet'/>
+                </PanelFooter>
+            </Panel>
+            <Panel theme='success'>
+                <PanelHeader>
+                    01 September
+                </PanelHeader>
+                <Text children='This is the Panel body'/>
+                <PanelFooter>
+                    <Text small children='PanelFooter is a good place for feet'/>
+                </PanelFooter>
+            </Panel>
+            <Panel theme='success'>
+                <PanelHeader>
+                    01 September
                 </PanelHeader>
                 <Text children='This is the Panel body'/>
                 <PanelFooter>

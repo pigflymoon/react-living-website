@@ -4,7 +4,7 @@ import {Flex, Box} from 'reflexbox'
 import {Panel, PanelHeader, Text, PanelFooter, LinkBlock, Heading} from 'rebass';
 
 
-export default class NewsList extends React.Component {
+export default class QuakeUpdate extends React.Component {
     constructor(props) {
         super(props);
 
@@ -17,33 +17,22 @@ export default class NewsList extends React.Component {
 
     componentDidMount() {
         // Remove the 'www.' to cause a CORS error (and see the error state)
-        axios.get(`https://api.geonet.org.nz/${this.props.subreddit}/geonet`)
+        //https://api.geonet.org.nz/quake?MMI=3
+        fetch("https://api.geonet.org.nz/quake?MMI=3").then(response => response.json())
             .then(res => {
-                // Transform the raw data by extracting the nested posts
-                const posts = res.data.feed.map(function (item) {
+                var location = {};
+                const posts = res.features.map(function (item) {
 
-                    if (item.published) {
-                        item.published = item.published.slice(0, 10).replace(/-/g, "-")
+                    if (item.geometry.coordinates) {
+                        let latlng = item.geometry.coordinates;
+                        location.latlng = latlng.toString().split(',').reverse().join(',');
                     }
 
-                    return item;
-                });
-
-                // Update state to trigger a re-render.
-                // Clear any errors, and turn off the loading indiciator.
-                this.setState({
-                    posts,
-                    loading: false,
-                    error: null
-                });
-            })
-            .catch(err => {
-                // Something went wrong. Save the error in state and re-render.
-                this.setState({
-                    loading: false,
-                    error: err
-                });
-            });
+                    return location;
+                })
+                // console.log("posts " + posts)
+            }).then(data => console.log(data))
+            .catch(e => console.log("Oops, error", e))
     }
 
     renderLoading() {
@@ -91,7 +80,7 @@ export default class NewsList extends React.Component {
     render() {
         return (
             <div>
-                <h1>{`${this.props.subreddit}`}</h1>
+                <h1>Quakes</h1>
 
                 {this.state.loading ?
                     this.renderLoading()

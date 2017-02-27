@@ -55,7 +55,6 @@ export default class QuakeUpdate extends React.Component {
 
         var that = this;
 
-        // function callApiPromise() {
         var ApiPromise = getApiPromise(quakeApi);
         ApiPromise.then(function (value) {
             value.features.map(function (item) {
@@ -74,8 +73,7 @@ export default class QuakeUpdate extends React.Component {
                 total.push(getURL(url).then(JSON.parse))
             });
 
-            //
-            // setTimeout(() => {
+
             Promise.all(total).then(function (dataArr) {
                 dataArr.forEach(function (data) {
 
@@ -84,37 +82,17 @@ export default class QuakeUpdate extends React.Component {
                     }
                 });
 
-                console.log('address', address);
                 that.setState({
                     posts: address,
                     loading: false,
                     error: null
                 });
-                // return address;
+
             }).catch(function (err) {
                 console.log(err);
             });
-            // }, 2000);
-            //
-
 
         });
-        // }
-
-        // var posts = [];
-        // posts = callApiPromise();
-        // console.log("posts", posts);
-        // var posts = ["335 Kaparu Rd, Lake Grassmere 7285, New Zealand", "335 Kaparu Rd, Lake Grassmere 7285, New Zealand", "47 Clifford Rd, Lake Grassmere 7285, New Zealand", "317 Caseys Rd, Blind River 7285, New Zealand", "72 Caseys Rd, Blind River 7285, New Zealand", "194 Reserve Rd, Seddon 7285, New Zealand", "7012 SH 1, Ward 7285, New Zealand", "207 Montrose Rd, Mount Culverden 7392, New Zealand", "148 Kaparu Rd, Lake Grassmere 7285, New Zealand", "335 Kaparu Rd, Lake Grassmere 7285, New Zealand", "700 Marfells Beach Rd, Lake Grassmere 7285, New Zealand", "207 Montrose Rd, Mount Culverden 7392, New Zealand", "173 Albert Rd, Tokomaru 4474, New Zealand", "455 McRaes Rd, Scargill 7483, New Zealand", "2004 SH 2, Whakaki 4198, New Zealand", "274 Whakamahi Rd, Wairoa 4193, New Zealand", "52 Charlton Rd, Te Awanga 4172, New Zealand", "1753 Mouse Point Rd, Tekoa Range 7392, New Zealand", "318 Cable Station Rd, Blind River 7285, New Zealand", "204 Cable Station Rd, Blind River 7285, New Zealand", "1209A Riverside Rd, Mangapapa, Pouawa 4071, New Zealand", "424 Pahau Downs Rd, Mount Culverden 7392, New Zealand", "817 Newall Rd, Newall 4381, New Zealand", "1753 Mouse Point Rd, Tekoa Range 7392, New Zealand", "1031 Whangaehu Valley Rd, Whangaehu Valley 5886, New Zealand", "4988 Te Araroa Rd, Hicks Bay 4087, New Zealand", "251 Gulch Rd, Ward 7285, New Zealand", "936 Inland Rd, Waiau 7395, New Zealand", "1739 Pori Rd, Alfredton 4986, New Zealand", "126 Merrifields Rd, Blind River 7285, New Zealand", "758 Mouse Point Rd, Mount Culverden 7391, New Zealand", "89 Caithness Rd, Rotherham 7391, New Zealand", "738 Tutaetoko Rd, Toatoa 3197, New Zealand", "803 State Hwy, Tirohanga 3197, New Zealand", "72 Marfells Beach Road, Lake Grassmere 7285, New Zealand", "335 Kaparu Rd, Lake Grassmere 7285, New Zealand", "1178 Puhi Puhi Rd, Puhi Puhi 7371, New Zealand", "185 Marine Parade, New Brighton, Christchurch 8083, New Zealand", "93 Waitane Rd, Oaro 7374, New Zealand", "89 Caithness Rd, Rotherham 7391, New Zealand", "365 Ward Beach Rd, Ward 7285, New Zealand"];
-
-        // setTimeout(() => {
-        //     this.setState({
-        //         posts: test,
-        //         loading: false,
-        //         error: null
-        //     });
-        // }, 2000);
-
-
     }
 
     renderLoading() {
@@ -137,10 +115,16 @@ export default class QuakeUpdate extends React.Component {
         return (
             <Flex align='center' wrap>
                 <Box sm={3}>
-                    {this.state.posts.map((post, i) =>
-                        <h3 key={i}>
-                            {post}
-                        </h3>
+                    {this.state.posts.map((post, index) =>
+
+                        <Panel theme='success' key={index}>
+                            <PanelHeader>
+                                {index + 1}
+                            </PanelHeader>
+                            <PanelFooter>
+                                <Text children={post}/>
+                            </PanelFooter>
+                        </Panel>
                     )}
 
                 </Box>

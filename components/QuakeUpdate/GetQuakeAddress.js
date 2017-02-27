@@ -33,8 +33,9 @@ function getApiPromise(apiUrl) {
         var quake = getURL(apiUrl).then(JSON.parse);
         resolve(quake);
     });
-}
-export function callApiPromise() {
+} 
+
+function callApiPromise() {
     var ApiPromise = getApiPromise(quakeApi);
     ApiPromise.then(function (value) {
         value.features.map(function (item) {

@@ -10,6 +10,7 @@ export default class App extends React.Component {
                     <ul className="navigation">
                         <li><NavLink to="/welcome">Welcome</NavLink></li>
                         <li><NavLink to="/home">Home</NavLink></li>
+                        <li><NavLink to="/quake">Quake</NavLink></li>
                     </ul>
                 </header>
                 {this.props.children}

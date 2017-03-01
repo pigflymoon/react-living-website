@@ -1,141 +1,115 @@
 import React from 'react';
-import PropTypes from 'react';
 import axios from 'axios';
+import {Flex, Box} from 'reflexbox'
+import {Panel, PanelHeader, Text, PanelFooter, LinkBlock, Heading} from 'rebass';
 import './Welcome.scss';
 
+class FetchDemo extends React.Component {
+    constructor(props) {
+        super(props);
 
-class NpsForecastMap extends React.Component {
-    state = {
-        forecast: {}
-    };
-
-    propTypes = {
-        np_url: React.PropTypes.string,
-        init_lat: React.PropTypes.number,
-        init_lng: React.PropTypes.number
-    };
-
-    markers = [];
-
-
-    render() {
-        return <div className="NpsForecastMap" ref="mapdiv">
-        </div>
+        this.state = {
+            posts: [],
+            loading: true,
+            error: null
+        };
     }
 
     componentDidMount() {
-        this.map = this.createMap()
-        this.loadFeatures()
+        // Remove the 'www.' to cause a CORS error (and see the error state)
+        axios.get(`https://api.geonet.org.nz/${this.props.subreddit}/geonet`)
+            .then(res => {
+                console.log(res.data.feed);
+                // Transform the raw data by extracting the nested posts
+                const posts = res.data.feed.map(function (item) {
+
+                    if (item.published) {
+                        item.published = item.published.slice(0, 10).replace(/-/g, "-")
+                    }
+
+                    return item;
+                });
+
+                console.log(posts);
+                // Update state to trigger a re-render.
+                // Clear any errors, and turn off the loading indiciator.
+                this.setState({
+                    posts,
+                    loading: false,
+                    error: null
+                });
+            })
+            .catch(err => {
+                // Something went wrong. Save the error in state and re-render.
+                this.setState({
+                    loading: false,
+                    error: err
+                });
+            });
     }
 
-    createMap() {
-        let mapOptions = {
-            zoom: 3,
-            center: this.mapCenter()
-        }
-        return new google.maps.Map(this.refs.mapdiv, mapOptions)
+    renderLoading() {
+        return <div>Loading...</div>;
     }
 
-    mapCenter() {
-        return new google.maps.LatLng(
-            this.props.init_lat,
-            this.props.init_lng
-        )
-    }
-
-    loadFeatures() {
-        let self = this
-        let infoWindow = new google.maps.InfoWindow()
-        axios.get(self.props.nps_source)
-            .then(function (result) {
-                for (let val of result.data.features) {
-                    let marker = self.createMarker(val, self.map)
-
-                    marker.addListener('click', function () {
-                        infoWindow.close()
-                        let title = this.title
-                        let infoContent = ""
-                        let getWeather = false
-
-
-                        // check to see if we already have the forecast for this marker
-                        if (title in self.state.forecast) {
-                            console.log("title in state")
-                            infoContent = title + "<br>" + self.state.forecast[title]
-                        }
-                        else {
-                            infoContent = title + "<br>Loading Current Weather..."
-                            getWeather = true
-                        }
-                        infoWindow.setContent(infoContent)
-                        infoWindow.open(self.map, this)
-
-                        if (getWeather) {
-                            self.getForecast(marker.position.lat(), marker.position.lng())
-                                .then(function (result) {
-                                    infoWindow.setContent(title + "<br>" + result)
-                                    self.state.forecast[title] = result
-                                    console.log("added forecast to state for " + title)
-                                })
-                        }
-
-                    });
-
-                    self.markers.push(marker)
-
-                } // for
-            }); //then
-    }
-
-    createMarker(val, map) {
-        let pointval = new google.maps.LatLng(
-            parseFloat(val['geometry']['coordinates'][1]),
-            parseFloat(val['geometry']['coordinates'][0]));
-        let titleText = val['properties']['title']
-        let marker = new google.maps.Marker({
-            position: pointval,
-            map: map,
-            title: titleText
-        });
-
-        return marker
-    }
-
-    getForecast(lat, lng) {
-        let forecast_p = new Promise(
-            function (resolve, reject) {
-                let request_url = "https://crossorigin.me/https://api.darksky.net/forecast/8266ff95ef9bbfccf0ea24c325818f31/"
-
-                request_url = request_url + lat + "," + lng
-                axios.get(request_url)
-                    .then(function (result) {
-                        let content = result.data.daily.summary
-                        resolve(content)
-                    });
-            }); // function(success,fail)
-
-        forecast_p.then(
-            function (result) {
-                return result
-            }
+    renderError() {
+        return (
+            <div>
+                Uh oh: {this.state.error.message}
+            </div>
         );
-        return forecast_p
     }
 
+    renderPosts() {
+        if (this.state.error) {
+            return this.renderError();
+        }
+
+        return (
+            <Flex align='center' wrap>
+                <Box sm={3}>
+                    {this.state.posts.map((post, index) =>
+                        <Panel theme='success' key={index}>
+                            <PanelHeader>
+                                {post.published}
+                            </PanelHeader>
+                            <PanelFooter>
+                                <LinkBlock
+                                    href={post.link}
+                                    is="a"
+                                >
+                                    <Text children={post.title}/>
+                                </LinkBlock>
+                            </PanelFooter>
+                        </Panel>
+                    )}
+
+                </Box>
+            </Flex>
+
+        );
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>{`${this.props.subreddit}`}</h1>
+
+                {this.state.loading ?
+                    this.renderLoading()
+                    : this.renderPosts()}
+            </div>
+        );
+    }
 }
 
-let init_lng = -98.5795;
-let init_lat = 39.8282;
-let nps_url = "https://raw.githubusercontent.com/gizm00/blog_code/master/appendto/react_nps/np.geojson";
 
 export default class Welcome extends React.Component {
     render() {
         return (
             <div className="bg-white">
-                <NpsForecastMap init_lat={init_lat} init_lng={init_lng} nps_source={nps_url}/>,
-
+                <FetchDemo subreddit="news"/>
             </div>
         )
     }
 }
-

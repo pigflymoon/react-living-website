@@ -1,0 +1,28 @@
+.rangeslider-horizontal {
+  .rangeslider__fill {
+    height: 100%;
+    background-color: #1ABC9C;
+    //background-image: -webkit-linear-gradient(left, #1ABC9C 0%, #1ABC9C 30%,#F1C40F 40%,#F1C40F 50%, #E74C3C 100%);
+    background-image: linear-gradient(to right, #1ABC9C 0%, #F1C40F 50%, #E74C3C 100%);
+    border-radius: 10px;
+    top: 0;
+  }
+  .rangeslider__handle {
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    top: -8px;
+    &:after {
+      content: ' ';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 5px;
+      left: 5px;
+      border-radius: 50%;
+      background-color: #dadada;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) inset,
+      0 -1px 3px rgba(0, 0, 0, 0.4) inset;
+    }
+  }
+}

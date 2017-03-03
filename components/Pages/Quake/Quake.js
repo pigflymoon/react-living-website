@@ -1,6 +1,7 @@
 import React from 'react';
 import {PropTypes} from 'react';
 import axios from 'axios';
+import Labels from '../../RangeSlide/Labels'
 import './Quake.scss';
 
 
@@ -87,6 +88,11 @@ export default class Quake extends React.Component {
     render() {
         return (
             <div className="bg-white">
+                <hr />
+                <hr />
+                <Labels />
+                <hr />
+                <hr />
                 <QuakeMap init_lat={init_lat} init_lng={init_lng} nps_source={nps_url}/>
             </div>
         )

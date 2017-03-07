@@ -16,14 +16,8 @@ class HorizontalCustomLabels extends Component {
         })
     }
 
-    handleChangeVertical = (value) => {
-        this.setState({
-            vertical: value
-        })
-    }
-
     render() {
-        const {horizontal, vertical} = this.state
+        const {horizontal} = this.state
         const horizontalLabels = {
             30: 'Weak+',
             40: 'Light+',
@@ -32,15 +26,7 @@ class HorizontalCustomLabels extends Component {
             70: 'Severe+'
         }
 
-        const verticalLabels = {
-            10: 'Getting started',
-            50: 'Half way',
-            90: 'Almost done'
-        }
-
-        const formatkg = value => 'Magnitude : ' +(value / 10 )
-        const formatPc = p => p + '%'
-
+        const formatValue = value => 'Magnitude : ' +(value / 10 )
         return (
             
             <div className='slider custom-labels'>
@@ -49,10 +35,10 @@ class HorizontalCustomLabels extends Component {
                     max={100}
                     value={horizontal}
                     labels={horizontalLabels}
-                    format={formatkg}
+                    format={formatValue}
                     onChange={this.handleChangeHorizontal}
                 />
-                <div className='value'>{formatkg(horizontal)}</div>
+                <div className='value'>{formatValue(horizontal)}</div>
             </div>
         )
     }

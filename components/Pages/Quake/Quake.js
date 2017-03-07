@@ -1,7 +1,8 @@
 import React from 'react';
 import {PropTypes} from 'react';
 import axios from 'axios';
-import Labels from '../../RangeSlide/Labels'
+import Labels from '../../RangeSlider/label'
+import {Flex, Box} from 'reflexbox'
 import './Quake.scss';
 
 
@@ -88,13 +89,19 @@ export default class Quake extends React.Component {
     render() {
         return (
             <div className="bg-white">
-                <hr />
-                <hr />
-                <Labels />
-                <hr />
-                <hr />
-                <QuakeMap init_lat={init_lat} init_lng={init_lng} nps_source={nps_url}/>
+
+                <Flex align='center' wrap justify="center" pb={6}>
+                    <Box sm={8}>
+                        <Labels />
+
+
+                    </Box>
+                    <Box sm={8} className="map-container">
+                        <QuakeMap init_lat={init_lat} init_lng={init_lng} nps_source={nps_url}/>
+                    </Box>
+                </Flex>
             </div>
+
         )
     }
 }

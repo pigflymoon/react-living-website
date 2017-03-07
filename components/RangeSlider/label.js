@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import Slider from 'react-rangeslider'
-import 'react-rangeslider/lib/index.css'
-import './Labels.scss'
+import Slider from './rangeSlider'
 
-class Labels extends Component {
+class HorizontalCustomLabels extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
@@ -18,8 +16,14 @@ class Labels extends Component {
         })
     }
 
+    handleChangeVertical = (value) => {
+        this.setState({
+            vertical: value
+        })
+    }
+
     render() {
-        const {horizontal} = this.state
+        const {horizontal, vertical} = this.state
         const horizontalLabels = {
             30: 'Weak+',
             40: 'Light+',
@@ -28,10 +32,17 @@ class Labels extends Component {
             70: 'Severe+'
         }
 
-        const formatkg = value => value
+        const verticalLabels = {
+            10: 'Getting started',
+            50: 'Half way',
+            90: 'Almost done'
+        }
+
+        const formatkg = value => 'Magnitude : ' +(value / 10 )
         const formatPc = p => p + '%'
 
         return (
+            
             <div className='slider custom-labels'>
                 <Slider
                     min={0}
@@ -47,4 +58,4 @@ class Labels extends Component {
     }
 }
 
-export default Labels
+export default HorizontalCustomLabels

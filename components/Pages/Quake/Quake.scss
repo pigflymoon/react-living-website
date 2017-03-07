@@ -6,8 +6,15 @@
   margin: 1%;
 }
 
+.map-container {
+  position: relative;
+  height: 400px;
+}
+
 .quake-map {
   height: 100%;
   position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
 }

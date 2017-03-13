@@ -5,6 +5,15 @@ import './QuakeMap.scss';
 
 
 export default class QuakeMap extends React.Component {
+    constructor(props, context) {
+        super(props, context)
+        this.state = {
+            source: "",
+            level: ""
+        }
+    }
+
+
     markers = [];
 
     render() {
@@ -12,9 +21,14 @@ export default class QuakeMap extends React.Component {
         </div>
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.loadFeatures(nextProps)
+    }
+
+
     componentDidMount() {
         this.map = this.createMap()
-        this.loadFeatures()
+        this.loadFeatures("")
     }
 
     createMap() {
@@ -32,10 +46,17 @@ export default class QuakeMap extends React.Component {
         )
     }
 
-    loadFeatures() {
+    loadFeatures(nextProps) {
         let self = this
+        let url = self.props.nps_source
+
+        if (nextProps) {
+            url = url + nextProps.level;
+            self.map = self.createMap()
+        } else {
+            url = url + self.props.level;
+        }
         let infoWindow = new google.maps.InfoWindow()
-        let url = self.props.nps_source + self.props.level;
         console.log(url)
         axios.get(url)
             .then(function (result) {

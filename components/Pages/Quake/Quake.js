@@ -17,6 +17,7 @@ export default class Quake extends React.Component {
         this.state = {
             level: 4
         }
+        this.handleChooseLevel = this.handleChooseLevel.bind(this)
 
     }
 
@@ -33,7 +34,7 @@ export default class Quake extends React.Component {
 
                 <Flex align='center' wrap justify="center" pb={6}>
                     <Box col={8}>
-                        <Labels onChooseLevel={this.handleChooseLevel.bind(this)}></Labels>
+                        <Labels onChooseLevel={this.handleChooseLevel}></Labels>
                     </Box>
 
 

@@ -5,14 +5,6 @@ import './QuakeMap.scss';
 
 
 export default class QuakeMap extends React.Component {
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-            source: "",
-            level: ""
-        }
-    }
-
 
     markers = [];
 

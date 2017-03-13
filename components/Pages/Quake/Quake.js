@@ -23,7 +23,18 @@ export default class Quake extends React.Component {
 
     handleChooseLevel(stat) {
         console.log('hi', stat)
-        this.setState({level: stat})
+        if (stat <= 3) {
+            this.setState({level: 3})
+        } else if (stat <= 4) {
+            this.setState({level: 4})
+        } else if (stat <= 5) {
+            this.setState({level: 5})
+        } else if (stat <= 6) {
+            this.setState({level: 6})
+        } else {
+            this.setState({level: 7})
+        }
+
     }
 
 

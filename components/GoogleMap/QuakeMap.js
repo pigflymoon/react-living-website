@@ -35,7 +35,8 @@ export default class QuakeMap extends React.Component {
     loadFeatures() {
         let self = this
         let infoWindow = new google.maps.InfoWindow()
-        axios.get(self.props.nps_source)
+        let url = self.props.nps_source + self.props.quake_level;
+        axios.get(url)
             .then(function (result) {
                 for (let val of result.data.features) {
                     let marker = self.createMarker(val, self.map)//self.map is  this.map = this.createMap() pass created map into here

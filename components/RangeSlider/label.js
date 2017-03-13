@@ -14,8 +14,15 @@ class HorizontalCustomLabels extends Component {
         this.setState({
             horizontal: value
         })
+        // console.log("VALUE",value)
        
     }
+
+    chooseLevel = (value) =>{
+        this.props.onChoose(value);
+        console.log('choose level ' ,value)
+    }
+
 
     render() {
         const {horizontal} = this.state
@@ -39,8 +46,8 @@ class HorizontalCustomLabels extends Component {
                     format={formatValue}
                     onChange={this.handleChangeHorizontal}
                 />
-                <div className='label-value' ref="myValue"
-                     onClick={this.props.onClick.bind(null, this)}>{formatValue(horizontal)}</div>
+                <div className='label-value' onClick={this.chooseLevel(horizontal)}
+                     >{formatValue(horizontal)}</div>
             </div>
         )
     }

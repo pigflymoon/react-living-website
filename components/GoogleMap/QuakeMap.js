@@ -35,7 +35,8 @@ export default class QuakeMap extends React.Component {
     loadFeatures() {
         let self = this
         let infoWindow = new google.maps.InfoWindow()
-        let url = self.props.nps_source + self.props.quake_level;
+        let url = self.props.nps_source + self.props.level;
+        console.log(url)
         axios.get(url)
             .then(function (result) {
                 for (let val of result.data.features) {

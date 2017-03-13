@@ -75,6 +75,9 @@ export default class QuakeMap extends React.Component {
             parseFloat(val['geometry']['coordinates'][0]));
         let locality = val['properties']['locality']
         let time = val['properties']['time']
+
+        time = new Date(time)
+        time = time.toString().split('GMT')[0]
         time = time.split(".")[0].replace(/-/g, '/').replace(/T/g, '  ')
         let titleText = locality + '<br/>' + time
         let marker = new google.maps.Marker({

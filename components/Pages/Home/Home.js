@@ -11,16 +11,12 @@ export default class Home extends React.Component {
     render() {
         return (
             <div>
-                <div className="section-margin">
-                    <Gallery />
-                </div>
 
                 <div className="bg-white">
                     <NewsList subreddit="news"/>
-                    <QuakeUpdate />
+
                 </div>
-                <Category />
-                <Cards />
+
             </div>
         );
 

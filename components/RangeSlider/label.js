@@ -14,6 +14,7 @@ class HorizontalCustomLabels extends Component {
         this.setState({
             horizontal: value
         })
+       
     }
 
     render() {
@@ -26,9 +27,9 @@ class HorizontalCustomLabels extends Component {
             70: 'Severe+'
         }
 
-        const formatValue = value => 'Magnitude : ' +(value / 10 )
+        const formatValue = value => 'Magnitude : ' + (value / 10 )
         return (
-            
+
             <div className='slider custom-labels'>
                 <Slider
                     min={0}
@@ -38,7 +39,8 @@ class HorizontalCustomLabels extends Component {
                     format={formatValue}
                     onChange={this.handleChangeHorizontal}
                 />
-                <div className='value'>{formatValue(horizontal)}</div>
+                <div className='label-value' ref="myValue"
+                     onClick={this.props.onClick.bind(null, this)}>{formatValue(horizontal)}</div>
             </div>
         )
     }

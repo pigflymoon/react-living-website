@@ -1,7 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import {Flex, Box} from 'reflexbox'
-import {Panel, PanelHeader, Text, PanelFooter, LinkBlock} from 'rebass';
+import{
+    Heading,
+    Space,
+    Badge,
+    Panel,
+    PanelHeader,
+    Text,
+    NavItem,
+    Divider,
+    Tooltip,
+    PanelFooter,
+    LinkBlock
+} from 'rebass';
 
 
 export default class QuakesList extends React.Component {
@@ -19,7 +31,7 @@ export default class QuakesList extends React.Component {
         // Remove the 'www.' to cause a CORS error (and see the error state)
         var filterData = [];
 
-        axios.get(`https://api.geonet.org.nz/intensity?type=measured`)
+        axios.get(`https://api.geonet.org.nz/quake?MMI=0`)
             .then(res => {
                 const filterData = [];
                 var posts = res.data.features.reduce((array, value) => {
@@ -72,19 +84,37 @@ export default class QuakesList extends React.Component {
             <Flex align='center' wrap>
                 <Box sm={3}>
                     {this.state.posts.map((post, index) =>
-                        <Panel theme='success' key={index}>
+                        <Panel m={0} theme='success'>
                             <PanelHeader>
-                               mmi:  {post.properties.mmi}
+                                Magnitude
+                                <Space auto/>
+                                <NavItem small children={post.properties.magnitude}/>
                             </PanelHeader>
-                            <PanelFooter>
-                                <LinkBlock>coordinates:
-                                    <Text children={post.geometry.coordinates}/>
-                                </LinkBlock>
-                            </PanelFooter>
+                            <Flex align='baseline'>
+                                <Tooltip
+                                    title='Oh hello! You found the Tooltip!'>
+                                    <Text small children='Depth'/>
+                                </Tooltip>
+                                <Space auto/>
+                                <Text small children={post.properties.depth}/>
+                            </Flex>
+                            <Divider />
+                            <Flex align='baseline'>
+                                <Text small children='locality'/>
+                                <Space auto/>
+                                <Text small children={post.properties.locality}/>
+                            </Flex>
+                            <Divider />
+                            <Flex align='baseline'>
+                                <Text small children='NZST'/>
+                                <Space auto/>
+                                <Text small children={post.properties.time}/>
+                            </Flex>
+
                         </Panel>
                     )}
-
                 </Box>
+
             </Flex>
 
         );

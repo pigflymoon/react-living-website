@@ -38,6 +38,14 @@ export default class QuakesList extends React.Component {
                     // if condition is our filter
                     if (value.properties.mmi >= 2) {
                         // what happens inside the filter is the map
+                        let time = value.properties.time;
+
+                        time = new Date(time);
+                        time = time.toString().split('GMT')[0];
+                        time = time.split(".")[0].replace(/-/g, '/').replace(/T/g, '  ');
+                        value.properties.time = time;
+                        value.properties.magnitude=　value.properties.magnitude.toFixed(1);
+                        value.properties.depth=　value.properties.depth.toFixed(1)+' km';
                         array.push(value);
                     }
 
@@ -84,11 +92,11 @@ export default class QuakesList extends React.Component {
             <Flex align='center' wrap>
                 <Box sm={3}>
                     {this.state.posts.map((post, index) =>
-                        <Panel m={0} theme='success'>
+                        <Panel m={0} theme='success' key={index}>
                             <PanelHeader>
                                 Magnitude
                                 <Space auto/>
-                                <NavItem small children={post.properties.magnitude}/>
+                                <NavItem small children={post.properties.magnitude}  />
                             </PanelHeader>
                             <Flex align='baseline'>
                                 <Tooltip
@@ -96,7 +104,7 @@ export default class QuakesList extends React.Component {
                                     <Text small children='Depth'/>
                                 </Tooltip>
                                 <Space auto/>
-                                <Text small children={post.properties.depth}/>
+                                <Text small children={post.properties.depth}  />
                             </Flex>
                             <Divider />
                             <Flex align='baseline'>

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {Flex, Box} from 'reflexbox'
 import{
+    Grid,
     Heading,
     Space,
     Badge,
@@ -44,8 +45,8 @@ export default class QuakesList extends React.Component {
                         time = time.toString().split('GMT')[0];
                         time = time.split(".")[0].replace(/-/g, '/').replace(/T/g, '  ');
                         value.properties.time = time;
-                        value.properties.magnitude=　value.properties.magnitude.toFixed(1);
-                        value.properties.depth=　value.properties.depth.toFixed(1)+' km';
+                        value.properties.magnitude = value.properties.magnitude.toFixed(1);
+                        value.properties.depth = value.properties.depth.toFixed(1) + ' km';
                         array.push(value);
                     }
 
@@ -89,41 +90,48 @@ export default class QuakesList extends React.Component {
         }
 
         return (
-            <Flex align='center' wrap>
-                <Box sm={3}>
-                    {this.state.posts.map((post, index) =>
-                        <Panel m={0} theme='success' key={index}>
-                            <PanelHeader>
-                                Magnitude
-                                <Space auto/>
-                                <NavItem small children={post.properties.magnitude}  />
-                            </PanelHeader>
-                            <Flex align='baseline'>
-                                <Tooltip
-                                    title='Oh hello! You found the Tooltip!'>
-                                    <Text small children='Depth'/>
-                                </Tooltip>
-                                <Space auto/>
-                                <Text small children={post.properties.depth}  />
-                            </Flex>
-                            <Divider />
-                            <Flex align='baseline'>
-                                <Text small children='locality'/>
-                                <Space auto/>
-                                <Text small children={post.properties.locality}/>
-                            </Flex>
-                            <Divider />
-                            <Flex align='baseline'>
-                                <Text small children='NZST'/>
-                                <Space auto/>
-                                <Text small children={post.properties.time}/>
-                            </Flex>
 
-                        </Panel>
+            <div>
+                {this.state.posts.map((post, index) =>
+                        <Flex align="center"     key={index}>
+                        <Box  col={3} px={3}
+                             >
+                            Box
+                        </Box>
+                        < Box   col={3} px={3}
+                                >
+                            <Panel >
+                                <PanelHeader>
+                                    Magnitude
+                                    <Space auto/>
+                                    <NavItem small children={post.properties.magnitude}/>
+                                </PanelHeader>
+                                <Flex align='baseline'>
+                                    <Tooltip
+                                        title='Oh hello! You found the Tooltip!'>
+                                        <Text small children='Depth'/>
+                                    </Tooltip>
+                                    <Space auto/>
+                                    <Text small children={post.properties.depth}/>
+                                </Flex>
+                                <Divider />
+                                <Flex align='baseline'>
+                                    <Text small children='locality'/>
+                                    <Space auto/>
+                                    <Text small children={post.properties.locality}/>
+                                </Flex>
+                                <Divider />
+                                <Flex align='baseline'>
+                                    <Text small children='NZST'/>
+                                    <Space auto/>
+                                    <Text small children={post.properties.time}/>
+                                </Flex>
+
+                            </Panel>
+                        </Box>
+                    </Flex>
                     )}
-                </Box>
-
-            </Flex>
+            </div>
 
         );
     }

@@ -15,7 +15,9 @@ import{
     PanelFooter,
     LinkBlock
 } from 'rebass';
-
+import QuakeMap from '../../QuakeMap/QuakeMap'
+const init_lng = 174.885971;
+const init_lat = -40.900557;
 
 export default class QuakesList extends React.Component {
     constructor(props) {
@@ -52,8 +54,6 @@ export default class QuakesList extends React.Component {
 
                     return array;
                 }, filterData)
-
-                console.log(posts)
 
                 // Update state to trigger a re-render.
                 // Clear any errors, and turn off the loading indiciator.
@@ -93,14 +93,14 @@ export default class QuakesList extends React.Component {
 
             <div>
                 {this.state.posts.map((post, index) =>
-                        <Flex align="center"     key={index}>
-                        <Box  col={3} px={3}
-                             >
-                            Box
+                    <Flex align="center" key={index}>
+                        <Box col={3} lg={3} sm={3} px={3}>
+
+
+                            <QuakeMap init_lat={post.geometry.coordinates[1]} init_lng={post.geometry.coordinates[0]}/>
                         </Box>
-                        < Box   col={3} px={3}
-                                >
-                            <Panel >
+                        < Box col={3} lg={3} sm={9} px={3}>
+                            <Panel>
                                 <PanelHeader>
                                     Magnitude
                                     <Space auto/>
@@ -130,7 +130,7 @@ export default class QuakesList extends React.Component {
                             </Panel>
                         </Box>
                     </Flex>
-                    )}
+                )}
             </div>
 
         );

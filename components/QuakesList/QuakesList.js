@@ -45,7 +45,8 @@ export default class QuakesList extends React.Component {
 
                         time = new Date(time);
                         time = time.toString().split('GMT')[0];
-                        time = time.split(".")[0].replace(/-/g, '/').replace(/T/g, '  ');
+                        console.log(time)
+                        // time = time.split(".")[0].replace(/-/g, '/').replace(/T/g, '  ');
                         value.properties.time = time;
                         value.properties.magnitude = value.properties.magnitude.toFixed(1);
                         value.properties.depth = value.properties.depth.toFixed(1) + ' km';
